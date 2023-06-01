@@ -117,6 +117,8 @@ enum pm_qos_req_type {
 #endif
 };
 
+#define pm_qos_update_request_noop(a,r) pm_qos_update_request(NULL,r)
+
 struct pm_qos_request {
 	enum pm_qos_req_type type;
 	struct cpumask cpus_affine;
