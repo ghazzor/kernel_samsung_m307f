@@ -43,7 +43,7 @@ jobs:
         variant: [oneui, aosp]
         enforcing: [e]
         android: [11, 12]
-        device: [m30s, a50]
+        device: [m30s]
 
       fail-fast: false
 
@@ -81,9 +81,9 @@ jobs:
           set -eo pipefail
           echo "  I: Building Mint kernel ${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER}"
           if [[ "${{ matrix.enforcing }}" == "e" ]]; then
-            ./build.sh --kernelsu --automated --device ${{ matrix.device }} --variant ${{ matrix.variant }} --android ${{ matrix.android }}
+            ./build.sh --kernelsu --automated --device m30s --variant ${{ matrix.variant }} --android ${{ matrix.android }}
           elif [[ "${{ matrix.enforcing }}" == "p" ]]; then
-            ./build.sh --kernelsu --automated --device ${{ matrix.device }} --variant ${{ matrix.variant }} --android ${{ matrix.android }} --permissive
+            ./build.sh --kernelsu --automated --device m30s --variant ${{ matrix.variant }} --android ${{ matrix.android }} --permissive
           fi
 
       - name: Prepare release package
