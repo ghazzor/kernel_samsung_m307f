@@ -12,11 +12,11 @@ jobs:
       - name: Send build message to Telegram
         uses: appleboy/telegram-action@master
         env: 
-          TELEGRAM_TO: "${{ secrets.TELEGRAM_TO }}"
-          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_TOKEN }}"
+          TELEGRAM_TO: "${{ secrets.TELEGRAM_CHAT_ID }}"
+          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_BOT_TOKEN }}"
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: "🛠️ Build Started for KernelSU 👷"    
  
   failure-notification:
@@ -28,11 +28,11 @@ jobs:
       - name: Send failure message to Telegram
         uses: appleboy/telegram-action@master
         env: 
-          TELEGRAM_TO: "${{ secrets.TELEGRAM_TO }}"
-          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_TOKEN }}"
+          TELEGRAM_TO: "${{ secrets.TELEGRAM_CHAT_ID }}"
+          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_BOT_TOKEN }}"
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: "🛑 Build failed for KernelSU 😞"   
 
   build-kernelsu:
@@ -99,11 +99,11 @@ jobs:
       - name: Upload build to Telegram
         uses: appleboy/telegram-action@master
         env: 
-          TELEGRAM_TO: "${{ secrets.TELEGRAM_TO }}"
-          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_TOKEN }}"
+          TELEGRAM_TO: "${{ secrets.TELEGRAM_CHAT_ID }}"
+          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_BOT_TOKEN }}"
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: " "
           document: ./release/*.zip
 
@@ -133,11 +133,11 @@ jobs:
      - name: Upload Manager to Telegram
        uses: appleboy/telegram-action@master
        env: 
-          TELEGRAM_TO: "${{ secrets.TELEGRAM_TO }}"
-          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_TOKEN }}"
+          TELEGRAM_TO: "${{ secrets.TELEGRAM_CHAT_ID }}"
+          TELEGRAM_TOKEN: "${{ secrets.TELEGRAM_BOT_TOKEN }}"
        with:
-         to: ${{ secrets.TELEGRAM_TO }}
-         token: ${{ secrets.TELEGRAM_TOKEN }}
+         to: ${{ secrets.TELEGRAM_CHAT_ID }}
+         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
          message: "Manager"
          document: ./tmp/manager/*.apk
          if-no-files-found: error
