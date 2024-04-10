@@ -1,6 +1,7 @@
 name: KernelSU Development Build (Galaxy M30S)
 
 on:
+  workflow_dispatch:
   push:
 
 jobs:
