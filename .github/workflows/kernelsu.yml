@@ -42,7 +42,7 @@ jobs:
     strategy:
       matrix:
         variant: [oneui, aosp]
-        enforcing: [e]
+        enforcing: [p]
         android: [11, 12]
         device: [m30s, a50]
 
