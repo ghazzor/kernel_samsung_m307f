@@ -1,4 +1,4 @@
-name: KernelSU Development Build (Galaxy M30S)
+name: KernelSU Release Build
 
 on:
   workflow_dispatch:
@@ -53,9 +53,9 @@ jobs:
           fetch-depth: 0 
           submodules: true
 
-      - uses: szenius/set-timezone@v1.0
+      - uses: szenius/set-timezone@v2.0
         with:
-          timezone: "Asia/Kolkata"
+          timezoneLinux: "Asia/Kolkata"
 
       - name: Export build branch
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
