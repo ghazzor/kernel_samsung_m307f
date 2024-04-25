@@ -64,7 +64,7 @@ exit_script() {
 }
 
 download_toolchain() {
-	bash <(curl https://gist.githubusercontent.com/roynatech2544/0feeeb35a6d1782b186990ff2a0b3657/raw/b170134a94dac3594df506716bc7b802add2724b/setup.sh) 2>&1 | sed 's/^/     /'
+	bash init_toolchain.sh 2>&1 | sed 's/^/     /'
 	verify_toolchain
 }
 
