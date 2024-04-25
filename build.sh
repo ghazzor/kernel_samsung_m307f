@@ -50,6 +50,9 @@ export ANDROID_MAJOR_VERSION=r
 export PLATFORM_VERSION=11.0.0
 export $ARCH
 export KCFLAGS=-Wno-address-of-packed-member
+export DTC_FLAGS =-Wno-unit_address_vs_reg \
+                  -Wno-avoid_default_addr_size \
+                  -Wno-reg_format
 kver=$(make kernelversion)
 
 script_echo() {
