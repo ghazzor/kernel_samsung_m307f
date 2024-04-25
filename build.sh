@@ -49,6 +49,7 @@ export SUBARCH=arm64
 export ANDROID_MAJOR_VERSION=r
 export PLATFORM_VERSION=11.0.0
 export $ARCH
+export KCFLAGS=-Wno-address-of-packed-member
 kver=$(make kernelversion)
 
 script_echo() {
@@ -217,8 +218,8 @@ build_kernel() {
 		make -C $(pwd) CC=${BUILD_PREF_COMPILER} LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip ${BUILD_DEVICE_TMP_CONFIG} LOCALVERSION="${LOCALVERSION}" 2>&1 | sed 's/^/     /'
 		make -C $(pwd) CC=${BUILD_PREF_COMPILER} LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip -j$(nproc --all) LOCALVERSION="${LOCALVERSION}" 2>&1 | sed 's/^/     /'
 	elif [[ ${BUILD_PREF_COMPILER_VERSION} == 'proton' ]]; then
-		make -C $(pwd) ARCH=arm64 CC=${BUILD_PREF_COMPILER} LD=ld.lld LLVM=1 LLVM_IAS=1 HOSTCC=clang HOSTCXX=clang++ AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip ${BUILD_DEVICE_TMP_CONFIG} LOCALVERSION="${LOCALVERSION}" 2>&1 | sed 's/^/     /'
-		make -C $(pwd) ARCH=arm64 CC=${BUILD_PREF_COMPILER} LD=ld.lld LLVM=1 LLVM_IAS=1 HOSTCC=clang HOSTCXX=clang++ AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip -j$(nproc --all) LOCALVERSION="${LOCALVERSION}" 2>&1 | sed 's/^/     /'
+		make -C $(pwd) ARCH=arm64 CC=${BUILD_PREF_COMPILER} KCFLAGS=-Wno-address-of-packed-member LD=ld.lld LLVM=1 LLVM_IAS=1 HOSTCC=clang HOSTCXX=clang++ AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip ${BUILD_DEVICE_TMP_CONFIG} LOCALVERSION="${LOCALVERSION}" 2>&1 | sed 's/^/     /'
+		make -C $(pwd) ARCH=arm64 CC=${BUILD_PREF_COMPILER} KCFLAGS=-Wno-address-of-packed-member LD=ld.lld LLVM=1 LLVM_IAS=1 HOSTCC=clang HOSTCXX=clang++ AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip -j$(nproc --all) LOCALVERSION="${LOCALVERSION}" 2>&1 | sed 's/^/     /'
 	elif [[ ${BUILD_PREF_COMPILER_VERSION} == 'google_snowcone' ]]; then
 		# google_snowcone (aka Clang 12 for Android) uses an additional 'LLVM=1' flag
 		make -C $(pwd) CC=${BUILD_PREF_COMPILER} LD=ld.lld LLVM=1 LLVM_IAS=1 AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip ${BUILD_DEVICE_TMP_CONFIG} LOCALVERSION="${LOCALVERSION}" 2>&1 | sed 's/^/     /'
