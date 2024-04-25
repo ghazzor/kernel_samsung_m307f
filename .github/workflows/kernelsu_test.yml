@@ -2,6 +2,7 @@ name: KernelSU Development Build (Galaxy M30S)
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   notify:
@@ -40,10 +41,10 @@ jobs:
 
     strategy:
       matrix:
-        variant: [oneui, aosp]
-        enforcing: [e, p]
-        android: [11, 12]
-        device: [m30s, a50]
+        variant: [aosp]
+        enforcing: [p]
+        android: [12]
+        device: [m30s]
 
       fail-fast: false
 
