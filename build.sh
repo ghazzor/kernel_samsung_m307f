@@ -49,7 +49,6 @@ export SUBARCH=arm64
 export ANDROID_MAJOR_VERSION=r
 export PLATFORM_VERSION=11.0.0
 export $ARCH
-export KCFLAGS=-Wno-address-of-packed-member
 kver=$(make kernelversion)
 
 script_echo() {
