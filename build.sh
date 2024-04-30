@@ -64,7 +64,7 @@ exit_script() {
 }
 
 download_toolchain() {
-	bash init_toolchain.sh 2>&1 | sed 's/^/     /'
+	git clone --depth=1 https://gitlab.com/LeCmnGend/clang -b clang-16 toolchain 2>&1 | sed 's/^/     /'
 	verify_toolchain
 }
 
